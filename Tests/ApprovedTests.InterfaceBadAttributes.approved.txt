@@ -1,0 +1,7 @@
+﻿.class interface private abstract auto ansi InterfaceBadAttributes
+{
+  .method public hidebysig newslot abstract virtual 
+          instance void  MethodWithEmptyStringCheckOnParam(string arg) cil managed
+  {
+  } // end of method InterfaceBadAttributes::MethodWithEmptyStringCheckOnParam
+} // end of class InterfaceBadAttributes

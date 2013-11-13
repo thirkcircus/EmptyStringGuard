@@ -1,0 +1,332 @@
+﻿.class public auto ansi beforefieldinit SimpleClass
+       extends [mscorlib]System.Object
+{
+  .field private string '<NonEmptyProperty>k__BackingField'
+  .custom instance void [mscorlib]System.Runtime.CompilerServices.CompilerGeneratedAttribute::.ctor() = ( 01 00 00 00 ) 
+  .field private string '<EmptyProperty>k__BackingField'
+  .custom instance void [mscorlib]System.Runtime.CompilerServices.CompilerGeneratedAttribute::.ctor() = ( 01 00 00 00 ) 
+  .method public hidebysig specialname rtspecialname 
+          instance void  .ctor() cil managed
+  {
+    // Code size       7 (0x7)
+    .maxstack  1
+    .language '{3F5162F8-07C6-11D3-9053-00C04FA302A1}', '{994B45C4-E6E9-11D2-903F-00C04FA302A1}', '{5A869D0B-6611-11D3-BD2A-0000F80849BD}'
+    .line 6,6 : 5,25 'AssemblyToProcess\\SimpleClass.cs'
+    IL_0000:  ldarg.0
+    IL_0001:  call       instance void [mscorlib]System.Object::.ctor()
+    .line 8,8 : 5,6 ''
+    IL_0006:  ret
+  } // end of method SimpleClass::.ctor
+  .method public hidebysig specialname rtspecialname 
+          instance void  .ctor(string nonEmptyArg,
+                               string emptyArg) cil managed
+  {
+    // Code size       74 (0x4a)
+    .maxstack  3
+    IL_0000:  ldarg.1
+    IL_0001:  ldsfld     string [mscorlib]System.String::Empty
+    IL_0006:  ceq
+    IL_0008:  ldc.i4.0
+    IL_0009:  ceq
+    IL_000b:  ldstr      "[EmptyStringGuard] nonEmptyArg is an empty string."
+    IL_0010:  call       void [System]System.Diagnostics.Debug::Assert(bool,
+                                                                       string)
+    IL_0015:  ldarg.1
+    IL_0016:  ldsfld     string [mscorlib]System.String::Empty
+    IL_001b:  call       bool [mscorlib]System.String::op_Equality(string,
+                                                                   string)
+    IL_0020:  brfalse.s  IL_0032
+    IL_0022:  ldstr      "[EmptyStringGuard] nonEmptyArg is an empty string."
+    IL_0027:  ldstr      "nonEmptyArg"
+    IL_002c:  newobj     instance void [mscorlib]System.ArgumentException::.ctor(string,
+                                                                                 string)
+    IL_0031:  throw
+    .line 10,10 : 5,73 ''
+    IL_0032:  ldarg.0
+    IL_0033:  call       instance void [mscorlib]System.Object::.ctor()
+    .line 12,12 : 9,57 ''
+    IL_0038:  ldarg.1
+    IL_0039:  ldstr      " "
+    IL_003e:  ldarg.2
+    IL_003f:  call       string [mscorlib]System.String::Concat(string,
+                                                                string,
+                                                                string)
+    IL_0044:  call       void [mscorlib]System.Console::WriteLine(string)
+    .line 13,13 : 5,6 ''
+    IL_0049:  ret
+  } // end of method SimpleClass::.ctor
+  .method public hidebysig instance void 
+          SomeMethod(string nonEmptyArg,
+                     string emptyArg) cil managed
+  {
+    // Code size       57 (0x39)
+    .maxstack  2
+    IL_0000:  ldarg.1
+    IL_0001:  ldsfld     string [mscorlib]System.String::Empty
+    IL_0006:  ceq
+    IL_0008:  ldc.i4.0
+    IL_0009:  ceq
+    IL_000b:  ldstr      "[EmptyStringGuard] nonEmptyArg is an empty string."
+    IL_0010:  call       void [System]System.Diagnostics.Debug::Assert(bool,
+                                                                       string)
+    IL_0015:  ldarg.1
+    IL_0016:  ldsfld     string [mscorlib]System.String::Empty
+    IL_001b:  call       bool [mscorlib]System.String::op_Equality(string,
+                                                                   string)
+    IL_0020:  brfalse.s  IL_0032
+    IL_0022:  ldstr      "[EmptyStringGuard] nonEmptyArg is an empty string."
+    IL_0027:  ldstr      "nonEmptyArg"
+    IL_002c:  newobj     instance void [mscorlib]System.ArgumentException::.ctor(string,
+                                                                                 string)
+    IL_0031:  throw
+    .line 17,17 : 9,40 ''
+    IL_0032:  ldarg.1
+    IL_0033:  call       void [mscorlib]System.Console::WriteLine(string)
+    .line 18,18 : 5,6 ''
+    IL_0038:  ret
+  } // end of method SimpleClass::SomeMethod
+  .method public hidebysig specialname instance string 
+          get_NonEmptyProperty() cil managed
+  {
+    .custom instance void [mscorlib]System.Runtime.CompilerServices.CompilerGeneratedAttribute::.ctor() = ( 01 00 00 00 ) 
+    // Code size       7 (0x7)
+    .maxstack  8
+    IL_0000:  ldarg.0
+    IL_0001:  ldfld      string SimpleClass::'<NonEmptyProperty>k__BackingField'
+    IL_0006:  ret
+  } // end of method SimpleClass::get_NonEmptyProperty
+  .method public hidebysig specialname instance void 
+          set_NonEmptyProperty(string 'value') cil managed
+  {
+    .custom instance void [mscorlib]System.Runtime.CompilerServices.CompilerGeneratedAttribute::.ctor() = ( 01 00 00 00 ) 
+    // Code size       58 (0x3a)
+    .maxstack  2
+    IL_0000:  ldarg.1
+    IL_0001:  ldsfld     string [mscorlib]System.String::Empty
+    IL_0006:  ceq
+    IL_0008:  ldc.i4.0
+    IL_0009:  ceq
+    IL_000b:  ldstr      "[EmptyStringGuard] Cannot set the value of propert"
+    + "y 'System.String SimpleClass::NonEmptyProperty()' to an empty string."
+    IL_0010:  call       void [System]System.Diagnostics.Debug::Assert(bool,
+                                                                       string)
+    IL_0015:  ldarg.1
+    IL_0016:  ldsfld     string [mscorlib]System.String::Empty
+    IL_001b:  call       bool [mscorlib]System.String::op_Equality(string,
+                                                                   string)
+    IL_0020:  brfalse.s  IL_0032
+    IL_0022:  ldstr      "[EmptyStringGuard] Cannot set the value of propert"
+    + "y 'System.String SimpleClass::NonEmptyProperty()' to an empty string."
+    IL_0027:  ldstr      "value"
+    IL_002c:  newobj     instance void [mscorlib]System.ArgumentException::.ctor(string,
+                                                                                 string)
+    IL_0031:  throw
+    IL_0032:  ldarg.0
+    IL_0033:  ldarg.1
+    IL_0034:  stfld      string SimpleClass::'<NonEmptyProperty>k__BackingField'
+    IL_0039:  ret
+  } // end of method SimpleClass::set_NonEmptyProperty
+  .method public hidebysig specialname instance string 
+          get_EmptyProperty() cil managed
+  {
+    .custom instance void [mscorlib]System.Runtime.CompilerServices.CompilerGeneratedAttribute::.ctor() = ( 01 00 00 00 ) 
+    // Code size       7 (0x7)
+    .maxstack  8
+    IL_0000:  ldarg.0
+    IL_0001:  ldfld      string SimpleClass::'<EmptyProperty>k__BackingField'
+    IL_0006:  ret
+  } // end of method SimpleClass::get_EmptyProperty
+  .method public hidebysig specialname instance void 
+          set_EmptyProperty(string 'value') cil managed
+  {
+    .custom instance void [mscorlib]System.Runtime.CompilerServices.CompilerGeneratedAttribute::.ctor() = ( 01 00 00 00 ) 
+    // Code size       8 (0x8)
+    .maxstack  8
+    IL_0000:  ldarg.0
+    IL_0001:  ldarg.1
+    IL_0002:  stfld      string SimpleClass::'<EmptyProperty>k__BackingField'
+    IL_0007:  ret
+  } // end of method SimpleClass::set_EmptyProperty
+  .method public hidebysig instance void 
+          PublicWrapperOfPrivateMethod() cil managed
+  {
+    // Code size       12 (0xc)
+    .maxstack  2
+    .line 28,28 : 9,41 ''
+    IL_0000:  ldarg.0
+    IL_0001:  ldsfld     string [mscorlib]System.String::Empty
+    IL_0006:  call       instance void SimpleClass::SomePrivateMethod(string)
+    .line 29,29 : 5,6 ''
+    IL_000b:  ret
+  } // end of method SimpleClass::PublicWrapperOfPrivateMethod
+  .method private hidebysig instance void 
+          SomePrivateMethod(string x) cil managed
+  {
+    // Code size       7 (0x7)
+    .maxstack  8
+    .line 33,33 : 9,30 ''
+    IL_0000:  ldarg.1
+    IL_0001:  call       void [mscorlib]System.Console::WriteLine(string)
+    .line 34,34 : 5,6 ''
+    IL_0006:  ret
+  } // end of method SimpleClass::SomePrivateMethod
+  .method public hidebysig instance void 
+          MethodWithTwoRefs(string& first,
+                            string& second) cil managed
+  {
+    // Code size       1 (0x1)
+    .maxstack  0
+    .line 38,38 : 5,6 ''
+    IL_0000:  ret
+  } // end of method SimpleClass::MethodWithTwoRefs
+  .method public hidebysig instance void 
+          MethodWithExistingArgumentGuard(string x) cil managed
+  {
+    // Code size       31 (0x1f)
+    .maxstack  2
+    .line 42,42 : 9,37 ''
+    IL_0000:  ldarg.1
+    IL_0001:  call       bool [mscorlib]System.String::IsNullOrEmpty(string)
+    IL_0006:  brfalse.s  IL_0018
+    .line 43,43 : 13,69 ''
+    IL_0008:  ldstr      "x is null or empty."
+    IL_000d:  ldstr      "x"
+    IL_0012:  newobj     instance void [mscorlib]System.ArgumentException::.ctor(string,
+                                                                                 string)
+    IL_0017:  throw
+    .line 45,45 : 9,30 ''
+    IL_0018:  ldarg.1
+    IL_0019:  call       void [mscorlib]System.Console::WriteLine(string)
+    .line 46,46 : 5,6 ''
+    IL_001e:  ret
+  } // end of method SimpleClass::MethodWithExistingArgumentGuard
+  .method public hidebysig instance void 
+          MethodWithExistingEmptyStringGuard(string x) cil managed
+  {
+    // Code size       81 (0x51)
+    .maxstack  2
+    IL_0000:  ldarg.1
+    IL_0001:  ldsfld     string [mscorlib]System.String::Empty
+    IL_0006:  ceq
+    IL_0008:  ldc.i4.0
+    IL_0009:  ceq
+    IL_000b:  ldstr      "[EmptyStringGuard] x is an empty string."
+    IL_0010:  call       void [System]System.Diagnostics.Debug::Assert(bool,
+                                                                       string)
+    IL_0015:  ldarg.1
+    IL_0016:  ldsfld     string [mscorlib]System.String::Empty
+    IL_001b:  call       bool [mscorlib]System.String::op_Equality(string,
+                                                                   string)
+    IL_0020:  brfalse.s  IL_0032
+    IL_0022:  ldstr      "[EmptyStringGuard] x is an empty string."
+    IL_0027:  ldstr      "x"
+    IL_002c:  newobj     instance void [mscorlib]System.ArgumentException::.ctor(string,
+                                                                                 string)
+    IL_0031:  throw
+    .line 50,50 : 9,31 ''
+    IL_0032:  ldsfld     string [mscorlib]System.String::Empty
+    IL_0037:  ldarg.1
+    IL_0038:  call       bool [mscorlib]System.String::op_Equality(string,
+                                                                   string)
+    IL_003d:  brfalse.s  IL_004a
+    .line 51,51 : 13,46 ''
+    IL_003f:  ldstr      "x"
+    IL_0044:  newobj     instance void [mscorlib]System.ArgumentException::.ctor(string)
+    IL_0049:  throw
+    .line 53,53 : 9,30 ''
+    IL_004a:  ldarg.1
+    IL_004b:  call       void [mscorlib]System.Console::WriteLine(string)
+    .line 54,54 : 5,6 ''
+    IL_0050:  ret
+  } // end of method SimpleClass::MethodWithExistingEmptyStringGuard
+  .method public hidebysig instance void 
+          MethodWithExistingEmptyStringGuardReversed(string x) cil managed
+  {
+    // Code size       81 (0x51)
+    .maxstack  2
+    IL_0000:  ldarg.1
+    IL_0001:  ldsfld     string [mscorlib]System.String::Empty
+    IL_0006:  ceq
+    IL_0008:  ldc.i4.0
+    IL_0009:  ceq
+    IL_000b:  ldstr      "[EmptyStringGuard] x is an empty string."
+    IL_0010:  call       void [System]System.Diagnostics.Debug::Assert(bool,
+                                                                       string)
+    IL_0015:  ldarg.1
+    IL_0016:  ldsfld     string [mscorlib]System.String::Empty
+    IL_001b:  call       bool [mscorlib]System.String::op_Equality(string,
+                                                                   string)
+    IL_0020:  brfalse.s  IL_0032
+    IL_0022:  ldstr      "[EmptyStringGuard] x is an empty string."
+    IL_0027:  ldstr      "x"
+    IL_002c:  newobj     instance void [mscorlib]System.ArgumentException::.ctor(string,
+                                                                                 string)
+    IL_0031:  throw
+    .line 58,58 : 9,31 ''
+    IL_0032:  ldarg.1
+    IL_0033:  ldsfld     string [mscorlib]System.String::Empty
+    IL_0038:  call       bool [mscorlib]System.String::op_Equality(string,
+                                                                   string)
+    IL_003d:  brfalse.s  IL_004a
+    .line 59,59 : 13,46 ''
+    IL_003f:  ldstr      "x"
+    IL_0044:  newobj     instance void [mscorlib]System.ArgumentException::.ctor(string)
+    IL_0049:  throw
+    .line 61,61 : 9,30 ''
+    IL_004a:  ldarg.1
+    IL_004b:  call       void [mscorlib]System.Console::WriteLine(string)
+    .line 62,62 : 5,6 ''
+    IL_0050:  ret
+  } // end of method SimpleClass::MethodWithExistingEmptyStringGuardReversed
+  .method public hidebysig instance void 
+          MethodWithExistingEmptyStringGuardWithMessage(string x) cil managed
+  {
+    // Code size       86 (0x56)
+    .maxstack  2
+    IL_0000:  ldarg.1
+    IL_0001:  ldsfld     string [mscorlib]System.String::Empty
+    IL_0006:  ceq
+    IL_0008:  ldc.i4.0
+    IL_0009:  ceq
+    IL_000b:  ldstr      "[EmptyStringGuard] x is an empty string."
+    IL_0010:  call       void [System]System.Diagnostics.Debug::Assert(bool,
+                                                                       string)
+    IL_0015:  ldarg.1
+    IL_0016:  ldsfld     string [mscorlib]System.String::Empty
+    IL_001b:  call       bool [mscorlib]System.String::op_Equality(string,
+                                                                   string)
+    IL_0020:  brfalse.s  IL_0032
+    IL_0022:  ldstr      "[EmptyStringGuard] x is an empty string."
+    IL_0027:  ldstr      "x"
+    IL_002c:  newobj     instance void [mscorlib]System.ArgumentException::.ctor(string,
+                                                                                 string)
+    IL_0031:  throw
+    .line 66,66 : 9,31 ''
+    IL_0032:  ldsfld     string [mscorlib]System.String::Empty
+    IL_0037:  ldarg.1
+    IL_0038:  call       bool [mscorlib]System.String::op_Equality(string,
+                                                                   string)
+    IL_003d:  brfalse.s  IL_004f
+    .line 67,67 : 13,61 ''
+    IL_003f:  ldstr      "x"
+    IL_0044:  ldstr      "x is empty."
+    IL_0049:  newobj     instance void [mscorlib]System.ArgumentException::.ctor(string,
+                                                                                 string)
+    IL_004e:  throw
+    .line 69,69 : 9,30 ''
+    IL_004f:  ldarg.1
+    IL_0050:  call       void [mscorlib]System.Console::WriteLine(string)
+    .line 70,70 : 5,6 ''
+    IL_0055:  ret
+  } // end of method SimpleClass::MethodWithExistingEmptyStringGuardWithMessage
+  .property instance string NonEmptyProperty()
+  {
+    .set instance void SimpleClass::set_NonEmptyProperty(string)
+    .get instance string SimpleClass::get_NonEmptyProperty()
+  } // end of property SimpleClass::NonEmptyProperty
+  .property instance string EmptyProperty()
+  {
+    .set instance void SimpleClass::set_EmptyProperty(string)
+    .get instance string SimpleClass::get_EmptyProperty()
+  } // end of property SimpleClass::EmptyProperty
+} // end of class SimpleClass
