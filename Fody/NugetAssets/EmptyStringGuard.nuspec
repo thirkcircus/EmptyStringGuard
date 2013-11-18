@@ -10,7 +10,7 @@
     <projectUrl>http://github.com/thirkcircus/EmptyStringGuard</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://raw.github.com/thirkcircus/EmptyStringGuard/master/Icons/package_icon.png</iconUrl>
-    <description>Add null checks.</description>
+    <description>Add empty string checks.</description>
     <language>en-AU</language>
     <tags>Empty String Check, ILWeaving, Fody, Cecil</tags>
     <dependencies>
