@@ -9,15 +9,13 @@ using EmptyStringGuard;
 
 public class PropertyProcessor
 {
-    private const string STR_CannotSetTheValueOfPropertyToEmptyString = "[EmptyStringGuard] Cannot set the value of property '{0}' to an empty string.";
+    private const string CannotSetTheValueOfPropertyToEmptyString = "[EmptyStringGuard] Cannot set the value of property '{0}' to an empty string.";
 
-    private readonly bool isDebug;
-    private readonly ValidationFlags validationFlags;
+    private readonly ValidationFlags _validationFlags;
 
-    public PropertyProcessor(ValidationFlags validationFlags, bool isDebug)
+    public PropertyProcessor(ValidationFlags validationFlags)
     {
-        this.validationFlags = validationFlags;
-        this.isDebug = isDebug;
+        _validationFlags = validationFlags;
     }
 
     public void Process(PropertyDefinition property)
@@ -40,7 +38,7 @@ public class PropertyProcessor
 
     private void InnerProcess(PropertyDefinition property)
     {
-        var localValidationFlags = validationFlags;
+        var localValidationFlags = _validationFlags;
 
         if (!property.PropertyType.IsRefType())
             return;
@@ -63,7 +61,7 @@ public class PropertyProcessor
 
             if (localValidationFlags.HasFlag(ValidationFlags.NonPublic) || (property.SetMethod.IsPublic && property.DeclaringType.IsPublic))
             {
-                InjectPropertySetterGuard(setBody, property.SetMethod.Parameters[0], String.Format(CultureInfo.InvariantCulture, STR_CannotSetTheValueOfPropertyToEmptyString, property.FullName));
+                InjectPropertySetterGuard(setBody, property.SetMethod.Parameters[0], String.Format(CultureInfo.InvariantCulture, CannotSetTheValueOfPropertyToEmptyString, property.FullName));
             }
 
             setBody.InitLocals = true;
@@ -79,13 +77,6 @@ public class PropertyProcessor
         var guardInstructions = new List<Instruction>();
 
         var entry = setBody.Instructions.First();
-
-        if (isDebug)
-        {
-            InstructionPatterns.LoadArgumentOntoStack(guardInstructions, valueParameter);
-
-            InstructionPatterns.CallDebugAssertInstructions(guardInstructions, errorMessage);
-        }
 
         InstructionPatterns.LoadArgumentOntoStack(guardInstructions, valueParameter);
 

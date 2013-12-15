@@ -22,7 +22,6 @@ public class RewritingMethods
         var sample = (dynamic)Activator.CreateInstance(sampleClassType);
         var exception = Assert.Throws<ArgumentException>(() => sample.SomeMethod(string.Empty, string.Empty));
         Assert.AreEqual("nonEmptyArg", exception.ParamName);
-        Assert.AreEqual("Fail: [EmptyStringGuard] nonEmptyArg is an empty string.", AssemblyWeaver.TestListener.Message);
     }
 
     [Test]
@@ -45,7 +44,6 @@ public class RewritingMethods
         AssemblyWeaver.TestListener.Reset();
         var sample = (dynamic)Activator.CreateInstance(classWithPrivateMethodType);
         Assert.Throws<ArgumentException>(() => sample.PublicWrapperOfPrivateMethod());
-        Assert.AreEqual("Fail: [EmptyStringGuard] x is an empty string.", AssemblyWeaver.TestListener.Message);
     }
 
 #if (DEBUG)

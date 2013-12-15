@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using Mono.Cecil;
 using EmptyStringGuard;
@@ -24,13 +23,11 @@ public class ModuleWeaver
 
     public void Execute()
     {
-        var EmptyStringGuardAttribute = ModuleDefinition.GetEmptyStringGuardAttribute();
+        var emptyStringGuardAttribute = ModuleDefinition.GetEmptyStringGuardAttribute() ?? ModuleDefinition.Assembly.GetEmptyStringGuardAttribute();
 
-        if (EmptyStringGuardAttribute == null)
-            EmptyStringGuardAttribute = ModuleDefinition.Assembly.GetEmptyStringGuardAttribute();
-
-        if (EmptyStringGuardAttribute != null)
-            ValidationFlags = (ValidationFlags)EmptyStringGuardAttribute.ConstructorArguments[0].Value;
+        if (emptyStringGuardAttribute != null) {
+            ValidationFlags = (ValidationFlags) emptyStringGuardAttribute.ConstructorArguments[0].Value;
+        }
 
         ReferenceFinder.FindReferences(AssemblyResolver, ModuleDefinition);
         var types = new List<TypeDefinition>(ModuleDefinition.GetTypes());
@@ -64,10 +61,8 @@ public class ModuleWeaver
 
     private void ProcessAssembly(List<TypeDefinition> types)
     {
-        var isDebug = DefineConstants.Any(c => c == "DEBUG") && ReferenceFinder.DebugAssertMethod != null;
-
-        var methodProcessor = new MethodProcessor(ValidationFlags, isDebug);
-        var propertyProcessor = new PropertyProcessor(ValidationFlags, isDebug);
+        var methodProcessor = new MethodProcessor(ValidationFlags);
+        var propertyProcessor = new PropertyProcessor(ValidationFlags);
 
         foreach (var type in types)
         {

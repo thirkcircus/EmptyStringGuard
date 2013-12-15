@@ -21,7 +21,6 @@ public class RewritingProperties
         var exception = Assert.Throws<ArgumentException>(() => { sample.NonEmptyProperty = string.Empty; });
         Assert.AreEqual("value", exception.ParamName);
         Assert.AreEqual("[EmptyStringGuard] Cannot set the value of property 'System.String SimpleClass::NonEmptyProperty()' to an empty string.\r\nParameter name: value", exception.Message);
-        Assert.AreEqual("Fail: [EmptyStringGuard] Cannot set the value of property 'System.String SimpleClass::NonEmptyProperty()' to an empty string.", AssemblyWeaver.TestListener.Message);
     }
 
     [Test]

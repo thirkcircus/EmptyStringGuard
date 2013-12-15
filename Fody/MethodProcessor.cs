@@ -10,14 +10,12 @@ using EmptyStringGuard;
 
 public class MethodProcessor
 {
-    private const string STR_IsEmptyString = "[EmptyStringGuard] {0} is an empty string.";
-    private readonly bool isDebug;
-    private readonly ValidationFlags validationFlags;
+    private const string IsEmptyString = "[EmptyStringGuard] {0} is an empty string.";
+    private readonly ValidationFlags _validationFlags;
 
-    public MethodProcessor(ValidationFlags validationFlags, bool isDebug)
+    public MethodProcessor(ValidationFlags validationFlags)
     {
-        this.validationFlags = validationFlags;
-        this.isDebug = isDebug;
+        _validationFlags = validationFlags;
     }
 
     public void Process(MethodDefinition method)
@@ -38,7 +36,7 @@ public class MethodProcessor
 
     private void InnerProcess(MethodDefinition method)
     {
-        var localValidationFlags = validationFlags;
+        var localValidationFlags = _validationFlags;
 
         var attribute = method.DeclaringType.GetEmptyStringGuardAttribute();
         if (attribute != null)
@@ -81,18 +79,11 @@ public class MethodProcessor
 
             guardInstructions.Clear();
 
-            if (isDebug)
-            {
-                InstructionPatterns.LoadArgumentOntoStack(guardInstructions, parameter);
-
-                InstructionPatterns.CallDebugAssertInstructions(guardInstructions, String.Format(CultureInfo.InvariantCulture, STR_IsEmptyString, parameter.Name));
-            }
-
             InstructionPatterns.LoadArgumentOntoStack(guardInstructions, parameter);
             
             InstructionPatterns.IfEmptyString(guardInstructions, entry, i =>
             {
-                InstructionPatterns.LoadArgumentException(i, String.Format(CultureInfo.InvariantCulture, STR_IsEmptyString, parameter.Name), parameter.Name);
+                InstructionPatterns.LoadArgumentException(i, String.Format(CultureInfo.InvariantCulture, IsEmptyString, parameter.Name), parameter.Name);
 
                 // Throw the top item off the stack
                 i.Add(Instruction.Create(OpCodes.Throw));
