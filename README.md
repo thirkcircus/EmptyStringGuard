@@ -92,7 +92,7 @@ Where and how injection occurs can be controlled via attributes. The EmptyString
         /// Prevents the injection of empty string checking.
         /// </summary>
         [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Property)]
-        public class AllowEmptyStringAttribute : Attribute
+        public class AllowEmptyAttribute : Attribute
         {
         }
         
