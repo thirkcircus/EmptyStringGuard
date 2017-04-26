@@ -1,10 +1,15 @@
-﻿.class public abstract auto ansi beforefieldinit ClassWithBadAttributes
+﻿// warning : THIS IS A PARTIAL DISASSEMBLY, NOT SUITABLE FOR RE-ASSEMBLING
+
+
+
+.class public abstract auto ansi beforefieldinit ClassWithBadAttributes
        extends [mscorlib]System.Object
 {
   .method public hidebysig newslot abstract virtual 
           instance void  MethodWithEmptyStringCheckOnParam(string arg) cil managed
   {
   } // end of method ClassWithBadAttributes::MethodWithEmptyStringCheckOnParam
+
   .method family hidebysig specialname rtspecialname 
           instance void  .ctor() cil managed
   {
@@ -14,4 +19,7 @@
     IL_0001:  call       instance void [mscorlib]System.Object::.ctor()
     IL_0006:  ret
   } // end of method ClassWithBadAttributes::.ctor
+
 } // end of class ClassWithBadAttributes
+
+// *********** DISASSEMBLY COMPLETE ***********************

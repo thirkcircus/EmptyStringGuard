@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using Mono.Cecil;
+using NUnit.Framework;
 
 public static class AssemblyWeaver
 {
@@ -43,7 +44,7 @@ public static class AssemblyWeaver
         Debug.Listeners.Clear();
         Debug.Listeners.Add(TestListener);
 
-        BeforeAssemblyPath = Path.GetFullPath(@"..\..\..\AssemblyToProcess\bin\Debug\AssemblyToProcess.dll");
+        BeforeAssemblyPath = Path.GetFullPath(Path.Combine(TestContext.CurrentContext.TestDirectory, @"..\..\..\AssemblyToProcess\bin\Debug\AssemblyToProcess.dll"));
         var beforePdbPath = Path.ChangeExtension(BeforeAssemblyPath, "pdb");
 
 #if (!DEBUG)
@@ -57,29 +58,37 @@ public static class AssemblyWeaver
         if (File.Exists(beforePdbPath))
             File.Copy(beforePdbPath, afterPdbPath, true);
 
-        var assemblyResolver = new MockAssemblyResolver();
-        var readerParameters = new ReaderParameters();
-        var writerParameters = new WriterParameters();
 
-        if (File.Exists(afterPdbPath))
+        using (var defaultAssemblyResolver = new DefaultAssemblyResolver())
         {
-            readerParameters.ReadSymbols = true;
-            writerParameters.WriteSymbols = true;
+            defaultAssemblyResolver.AddSearchDirectory(Path.GetDirectoryName(BeforeAssemblyPath));
+            defaultAssemblyResolver.AddSearchDirectory(TestContext.CurrentContext.TestDirectory);
+            var readerParameters = new ReaderParameters
+            {
+                AssemblyResolver = defaultAssemblyResolver
+            };
+            var writerParameters = new WriterParameters();
+
+            if (File.Exists(afterPdbPath))
+            {
+                readerParameters.ReadSymbols = true;
+                writerParameters.WriteSymbols = true;
+            }
+            using (var moduleDefinition = ModuleDefinition.ReadModule(BeforeAssemblyPath, readerParameters))
+            {
+                var weavingTask = new ModuleWeaver
+                {
+                    ModuleDefinition = moduleDefinition,
+                    AssemblyResolver = defaultAssemblyResolver,
+                    LogError = LogError,
+                    DefineConstants = new List<string> {"DEBUG"} // Always testing the debug weaver
+                };
+
+                weavingTask.Execute();
+                moduleDefinition.Write(AfterAssemblyPath, writerParameters);
+            }
+            Assembly = Assembly.LoadFile(AfterAssemblyPath);
         }
-
-        var moduleDefinition = ModuleDefinition.ReadModule(AfterAssemblyPath, readerParameters);
-
-        var weavingTask = new ModuleWeaver
-        {
-            ModuleDefinition = moduleDefinition,
-            AssemblyResolver = assemblyResolver,
-            LogError = LogError,
-            DefineConstants = new List<string> { "DEBUG" } // Always testing the debug weaver
-        };
-
-        weavingTask.Execute();
-        moduleDefinition.Write(AfterAssemblyPath, writerParameters);
-        Assembly = Assembly.LoadFile(AfterAssemblyPath);
     }
 
     public static string BeforeAssemblyPath;

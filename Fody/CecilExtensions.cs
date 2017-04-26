@@ -6,7 +6,7 @@ public static class CecilExtensions
 {
     public static bool HasInterface(this TypeDefinition type, string interfaceFullName)
     {
-        return (type.Interfaces.Any(i => i.FullName.Equals(interfaceFullName))
+        return (type.Interfaces.Any(i => i.InterfaceType.FullName.Equals(interfaceFullName))
                 || (type.BaseType != null && type.BaseType.Resolve().HasInterface(interfaceFullName)));
     }
 
@@ -95,19 +95,4 @@ public static class CecilExtensions
         return value.CustomAttributes.Any(a => a.AttributeType.Name == "CompilerGeneratedAttribute" || a.AttributeType.Name == "GeneratedCodeAttribute");
     }
 
-    public static bool IsAsyncStateMachine(this ICustomAttributeProvider value)
-    {
-        return value.CustomAttributes.Any(a => a.AttributeType.Name == "AsyncStateMachineAttribute");
-    }
-
-    public static bool IsIteratorStateMachine(this ICustomAttributeProvider value)
-    {
-        // Only works on VB not C# but it's something.
-        return value.CustomAttributes.Any(a => a.AttributeType.Name == "IteratorStateMachineAttribute");
-    }
-
-    public static bool IsIAsyncStateMachine(this TypeDefinition typeDefinition)
-    {
-        return typeDefinition.Interfaces.Any(x => x.Name == "IAsyncStateMachine");
-    }
 }

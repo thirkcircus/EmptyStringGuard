@@ -56,22 +56,23 @@ public class ApprovedTests
         if (!string.IsNullOrEmpty(identifier))
             identifier = "/item:" + identifier;
 
-        using (var process = Process.Start(new ProcessStartInfo(exePath, String.Format("\"{0}\" /text /linenum {1}", assemblyPath, identifier))
+        using (var process = Process.Start(new ProcessStartInfo(exePath, $"\"{assemblyPath}\" /nobar /text {identifier}")
         {
             RedirectStandardOutput = true,
             UseShellExecute = false,
             CreateNoWindow = true
         }))
         {
-            var projectFolder = Path.GetFullPath(Path.GetDirectoryName(assemblyPath) + "\\..\\..\\..").Replace("\\", "\\\\");
-            projectFolder = String.Format("{0}{1}\\\\", Char.ToLower(projectFolder[0]), projectFolder.Substring(1));
+
+            var projectFolder = Path.GetFullPath(Path.GetDirectoryName(TestContext.CurrentContext.TestDirectory) + @"\..\..").Replace(@"\", @"\\");
+            projectFolder = $@"{projectFolder[0]}{projectFolder.Substring(1)}\\";
 
             process.WaitForExit(10000);
 
-            return string.Join(Environment.NewLine, Regex.Split(process.StandardOutput.ReadToEnd(), Environment.NewLine)
-                    .Where(l => !l.StartsWith("// ") && !string.IsNullOrEmpty(l))
-                    .Select(l => l.Replace(projectFolder, ""))
-                    .ToList());
+            var decompile = process.StandardOutput.ReadToEnd()
+                .Replace(projectFolder, "");
+
+            return decompile.Substring(decompile.IndexOf("// warning :"));
         }
     }
 

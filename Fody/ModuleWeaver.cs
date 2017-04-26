@@ -46,13 +46,13 @@ public class ModuleWeaver
             {
                 if (method.ContainsAllowEmptyAttribute())
                 {
-                    LogError(string.Format("Method '{0}' is abstract but has an [AllowEmptyAttribute]. Remove this attribute.", method.FullName));
+                    LogError($"Method '{method.FullName}' is abstract but has an [AllowEmptyAttribute]. Remove this attribute.");
                 }
                 foreach (var parameter in method.Parameters)
                 {
                     if (parameter.ContainsAllowEmptyAttribute())
                     {
-                        LogError(string.Format("Method '{0}' is abstract but has an [AllowEmptyAttribute]. Remove this attribute.", method.FullName));
+                        LogError($"Method '{method.FullName}' is abstract but has an [AllowEmptyAttribute]. Remove this attribute.");
                     }
                 }
             }

@@ -1,4 +1,8 @@
-﻿.class public auto ansi beforefieldinit ClassWithPrivateMethod
+﻿// warning : THIS IS A PARTIAL DISASSEMBLY, NOT SUITABLE FOR RE-ASSEMBLING
+
+
+
+.class public auto ansi beforefieldinit ClassWithPrivateMethod
        extends [mscorlib]System.Object
 {
   .field private string '<SomeProperty>k__BackingField'
@@ -8,40 +12,32 @@
   {
     // Code size       12 (0xc)
     .maxstack  2
-    .language '{3F5162F8-07C6-11D3-9053-00C04FA302A1}', '{994B45C4-E6E9-11D2-903F-00C04FA302A1}', '{5A869D0B-6611-11D3-BD2A-0000F80849BD}'
-    .line 8,8 : 9,41 'AssemblyToProcess\\ClassWithPrivateMethod.cs'
     IL_0000:  ldarg.0
     IL_0001:  ldsfld     string [mscorlib]System.String::Empty
     IL_0006:  call       instance void ClassWithPrivateMethod::SomePrivateMethod(string)
-    .line 9,9 : 5,6 ''
     IL_000b:  ret
   } // end of method ClassWithPrivateMethod::PublicWrapperOfPrivateMethod
+
   .method private hidebysig instance void 
           SomePrivateMethod(string x) cil managed
   {
-    // Code size       51 (0x33)
+    // Code size       30 (0x1e)
     .maxstack  2
     IL_0000:  ldarg.1
     IL_0001:  ldsfld     string [mscorlib]System.String::Empty
-    IL_0006:  ceq
-    IL_0008:  ldc.i4.0
-    IL_0009:  ceq
-    IL_000b:  ldstr      "[EmptyStringGuard] x is an empty string."
-    IL_0010:  call       void [System]System.Diagnostics.Debug::Assert(bool,
-                                                                       string)
-    IL_0015:  ldarg.1
-    IL_0016:  ldsfld     string [mscorlib]System.String::Empty
-    IL_001b:  call       bool [mscorlib]System.String::op_Equality(string,
+    IL_0006:  call       bool [mscorlib]System.String::op_Equality(string,
                                                                    string)
-    IL_0020:  brfalse.s  IL_0032
-    IL_0022:  ldstr      "[EmptyStringGuard] x is an empty string."
-    IL_0027:  ldstr      "x"
-    IL_002c:  newobj     instance void [mscorlib]System.ArgumentException::.ctor(string,
+    IL_000b:  brfalse.s  IL_001d
+
+    IL_000d:  ldstr      "[EmptyStringGuard] x is an empty string."
+    IL_0012:  ldstr      "x"
+    IL_0017:  newobj     instance void [mscorlib]System.ArgumentException::.ctor(string,
                                                                                  string)
-    IL_0031:  throw
-    .line 15,15 : 5,6 ''
-    IL_0032:  ret
+    IL_001c:  throw
+
+    IL_001d:  ret
   } // end of method ClassWithPrivateMethod::SomePrivateMethod
+
   .method public hidebysig specialname instance string 
           get_SomeProperty() cil managed
   {
@@ -52,6 +48,7 @@
     IL_0001:  ldfld      string ClassWithPrivateMethod::'<SomeProperty>k__BackingField'
     IL_0006:  ret
   } // end of method ClassWithPrivateMethod::get_SomeProperty
+
   .method public hidebysig specialname instance void 
           set_SomeProperty(string 'value') cil managed
   {
@@ -63,6 +60,7 @@
     IL_0002:  stfld      string ClassWithPrivateMethod::'<SomeProperty>k__BackingField'
     IL_0007:  ret
   } // end of method ClassWithPrivateMethod::set_SomeProperty
+
   .method public hidebysig specialname rtspecialname 
           instance void  .ctor() cil managed
   {
@@ -72,9 +70,12 @@
     IL_0001:  call       instance void [mscorlib]System.Object::.ctor()
     IL_0006:  ret
   } // end of method ClassWithPrivateMethod::.ctor
+
   .property instance string SomeProperty()
   {
-    .set instance void ClassWithPrivateMethod::set_SomeProperty(string)
     .get instance string ClassWithPrivateMethod::get_SomeProperty()
+    .set instance void ClassWithPrivateMethod::set_SomeProperty(string)
   } // end of property ClassWithPrivateMethod::SomeProperty
 } // end of class ClassWithPrivateMethod
+
+// *********** DISASSEMBLY COMPLETE ***********************

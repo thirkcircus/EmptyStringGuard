@@ -1,7 +1,14 @@
-﻿.class interface private abstract auto ansi InterfaceBadAttributes
+﻿// warning : THIS IS A PARTIAL DISASSEMBLY, NOT SUITABLE FOR RE-ASSEMBLING
+
+
+
+.class interface private abstract auto ansi InterfaceBadAttributes
 {
   .method public hidebysig newslot abstract virtual 
           instance void  MethodWithEmptyStringCheckOnParam(string arg) cil managed
   {
   } // end of method InterfaceBadAttributes::MethodWithEmptyStringCheckOnParam
+
 } // end of class InterfaceBadAttributes
+
+// *********** DISASSEMBLY COMPLETE ***********************

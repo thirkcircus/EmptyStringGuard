@@ -32,7 +32,7 @@ public class PropertyProcessor
         }
         catch (Exception exception)
         {
-            throw new WeavingException(string.Format("An error occurred processing property '{0}'", property.FullName), exception);
+            throw new WeavingException($"An error occurred processing property '{property.FullName}'", exception);
         }
     }
 

@@ -55,7 +55,7 @@ public class RewritingMethods
         var sample = (dynamic)Activator.CreateInstance(specialClassType);
         var exception = Assert.Throws<ArgumentException>(() => sample.SomeMethodAsync(string.Empty, string.Empty));
         Assert.AreEqual("nonEmptyArg", exception.ParamName);
-        Assert.AreEqual("Fail: [EmptyStringGuard] nonEmptyArg is an empty string.", AssemblyWeaver.TestListener.Message);
+        Assert.AreEqual("[EmptyStringGuard] nonEmptyArg is an empty string.\r\nParameter name: nonEmptyArg", exception.Message);
     }
 
     [Test]

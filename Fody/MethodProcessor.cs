@@ -30,7 +30,7 @@ public class MethodProcessor
         }
         catch (Exception exception)
         {
-            throw new WeavingException(string.Format("An error occurred processing method '{0}'.", method.FullName), exception);
+            throw new WeavingException($"An error occurred processing method '{method.FullName}'.", exception);
         }
     }
 
